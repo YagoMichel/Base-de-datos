@@ -78,4 +78,12 @@ public class ProveedoresService {
                 id_proveedor
         );
     }
+    //Id de proveedores
+    public List<ProveedoresModel> getProveedoresBasico() {
+        return jdbcTemplate.query(
+                "SELECT id_proveedor, nombre FROM proveedores",
+                new BeanPropertyRowMapper<>(ProveedoresModel.class)
+        );
+    }
+
 }
