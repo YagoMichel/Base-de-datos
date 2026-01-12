@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- Template Name: DashCode - HTML, React, Vue, Tailwind Admin Dashboard Template Author: Codeshaper Website: https://codeshaper.net Contact: support@codeshaperbd.net Like: https://www.facebook.com/Codeshaperbd Purchase: https://themeforest.net/item/dashcode-admin-dashboard-template/42600453 License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project. -->
-<html lang="zxx" dir="ltr" class="light">
+<html lang="zxx" dir="ltr" class="light" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -1826,84 +1826,122 @@
                                     <div class="card-body flex flex-col p-6">
                                         <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
                                             <div class="flex-1">
-                                                <div class="card-title text-slate-900 dark:text-white">Añadir Cliente</div>
+                                                <div class="card-title text-slate-900 dark:text-white">Editar Perfume</div>
                                             </div>
                                         </header>
                                         <div class="card-text h-full ">
-                                            <form action="/clientes/guardar" method="post" class="space-y-4">
+                                            <form th:action="@{/perfumes/actualizar}"
+                                                  th:object="${perfume}"
+                                                  method="post"
+                                                  class="space-y-4">
+
+                                                <!-- ID oculto -->
+                                                <input type="hidden" th:field="*{id_perfume}">
 
                                                 <div class="input-area">
                                                     <label class="form-label">Nombre</label>
                                                     <div class="relative">
-                                                        <input type="text" class="form-control !pl-9" name="nombre">
-                                                        <iconify-icon icon="heroicons-outline:user" class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500"></iconify-icon>
+                                                        <input th:field="*{nombre}" type="text" class="form-control !pl-9" placeholder="Nombre">
+                                                        <iconify-icon icon="heroicons-outline:sparkles"
+                                                                      class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500">
+                                                        </iconify-icon>
                                                     </div>
                                                 </div>
 
                                                 <div class="input-area">
-                                                    <label class="form-label">Apellido Paterno</label>
+                                                    <label class="form-label">Familia Olfativa</label>
                                                     <div class="relative">
-                                                    <input type="text" name="ap_paterno" class="form-control !pl-9">
-                                                        <iconify-icon icon="heroicons-outline:user" class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500"></iconify-icon>
+                                                        <input th:field="*{familia_olfativa}" type="text" class="form-control !pl-9">
+                                                        <iconify-icon icon="heroicons-outline:cloud"
+                                                                      class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500">
+                                                        </iconify-icon>
                                                     </div>
                                                 </div>
 
                                                 <div class="input-area">
-                                                    <label class="form-label">Apellido Materno</label>
+                                                    <label class="form-label">Tipo de Producto</label>
                                                     <div class="relative">
-                                                        <input type="text" name="ap_materno" class="form-control !pl-9">
-                                                        <iconify-icon icon="heroicons-outline:user" class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500"></iconify-icon>
-                                                    </div>
-                                                </div>
-
-                                                <div class="input-area">
-                                                    <label class="form-label">RFC</label>
-                                                    <div class="relative">
-                                                        <input type="text" name="rfc" class="form-control !pl-9" required>
-                                                        <iconify-icon icon="heroicons-outline:identification" class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500"></iconify-icon>
-                                                    </div>
-                                                </div>
-
-                                                <div class="input-area">
-                                                    <label class="form-label">Tipo</label>
-                                                    <div class="relative">
-                                                        <select name="tipo" class="form-control !pl-9" required>
-                                                            <option value="Cliente">Cliente</option>
-                                                            <option value="Empresa">Empresa</option>
+                                                        <select th:field="*{tipo_producto}" class="form-control !pl-9">
+                                                            <option value="Colonia">Colonia</option>
+                                                            <option value="Extracto">Extracto</option>
                                                         </select>
-                                                        <iconify-icon icon="heroicons-outline:building-office-2" class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500"></iconify-icon>
+                                                        <iconify-icon icon="heroicons-outline:beaker"
+                                                                      class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500">
+                                                        </iconify-icon>
                                                     </div>
                                                 </div>
 
                                                 <div class="input-area">
-                                                    <label class="form-label">Correo</label>
+                                                    <label class="form-label">Fecha de Creación</label>
                                                     <div class="relative">
-                                                        <input type="email" name="correo" class="form-control !pl-9" required>
-                                                        <iconify-icon icon="heroicons-outline:mail" class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500"></iconify-icon>
+                                                        <input th:field="*{fecha_creacion}" type="date" class="form-control !pl-9">
+                                                        <iconify-icon icon="heroicons-outline:calendar"
+                                                                      class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500">
+                                                        </iconify-icon>
                                                     </div>
                                                 </div>
 
                                                 <div class="input-area">
-                                                    <label class="form-label ">Teléfono</label>
+                                                    <label class="form-label">Perfumista</label>
                                                     <div class="relative">
-                                                        <input type="tel" name="telefono" class="form-control !pl-9" required>
-                                                        <iconify-icon icon="heroicons-outline:phone" class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500"></iconify-icon>
+                                                        <input th:field="*{perfumista}" type="text" class="form-control !pl-9">
+                                                        <iconify-icon icon="heroicons-outline:user-circle"
+                                                                      class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500">
+                                                        </iconify-icon>
                                                     </div>
                                                 </div>
 
                                                 <div class="input-area">
-                                                    <label class="form-label">Dirección de envío</label>
+                                                    <label class="form-label">Descripción</label>
                                                     <div class="relative">
-                                                        <textarea name="direccion_envio" class="form-control !pl-9" required></textarea>
-                                                        <iconify-icon icon="heroicons-outline:truck" class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500"></iconify-icon>
+                                                        <textarea th:field="*{descripcion}" class="form-control !pl-9"></textarea>
+                                                        <iconify-icon icon="heroicons-outline:document-text"
+                                                                      class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500">
+                                                        </iconify-icon>
+                                                    </div>
+                                                </div>
+
+                                                <div class="input-area">
+                                                    <label class="form-label">Precio de Venta</label>
+                                                    <div class="relative">
+                                                        <input th:field="*{precio_venta}" type="number" step="0.01" class="form-control !pl-9">
+                                                        <iconify-icon icon="heroicons-outline:currency-dollar"
+                                                                      class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500">
+                                                        </iconify-icon>
+                                                    </div>
+                                                </div>
+
+                                                <div class="input-area">
+                                                    <label class="form-label">Costo de Producción</label>
+                                                    <div class="relative">
+                                                        <input th:field="*{costo_produccion}" type="number" step="0.01" class="form-control !pl-9">
+                                                        <iconify-icon icon="heroicons-outline:calculator"
+                                                                      class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500">
+                                                        </iconify-icon>
+                                                    </div>
+                                                </div>
+
+                                                <div class="input-area">
+                                                    <label class="form-label">Estado</label>
+                                                    <div class="relative">
+                                                        <select th:field="*{estado}" class="form-control !pl-9">
+                                                            <option value="Activo">Activo</option>
+                                                            <option value="Inactivo">Inactivo</option>
+                                                        </select>
+                                                        <iconify-icon icon="heroicons-outline:check-circle"
+                                                                      class="absolute left-2 top-1/2 -translate-y-1/2 text-base text-slate-500">
+                                                        </iconify-icon>
                                                     </div>
                                                 </div>
 
                                                 <div class="flex gap-3">
                                                     <button type="submit" class="btn btn-primary">Guardar</button>
-                                                    <a href="/clientes" class="btn btn-dark">Cancelar</a>
+                                                    <a th:href="@{/perfumes}" class="btn btn-dark">Cancelar</a>
                                                 </div>
+
                                             </form>
+
+
                                         </div>
                                     </div>
                                 </div>
